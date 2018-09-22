@@ -10,12 +10,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_21_152413) do
+ActiveRecord::Schema.define(version: 2018_09_21_153341) do
+
+  create_table "commits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "number"
+    t.integer "day"
+    t.bigint "user_id"
+    t.bigint "month_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["month_id"], name: "index_commits_on_month_id"
+    t.index ["user_id"], name: "index_commits_on_user_id"
+  end
 
   create_table "months", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "repositories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "number"
+    t.bigint "user_id"
+    t.bigint "month_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["month_id"], name: "index_repositories_on_month_id"
+    t.index ["user_id"], name: "index_repositories_on_user_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -25,4 +46,8 @@ ActiveRecord::Schema.define(version: 2018_09_21_152413) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "commits", "months"
+  add_foreign_key "commits", "users"
+  add_foreign_key "repositories", "months"
+  add_foreign_key "repositories", "users"
 end
