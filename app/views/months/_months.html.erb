@@ -1,0 +1,23 @@
+<p><%= @user.uid %></p>
+<p><%= @month_id %>月</p>
+
+<div class="lead">
+  <div class="grath-graph">
+    <g class="year">
+      <g class="month">
+        <g class="week">
+          <rect class="day day-light"></rect>
+          <rect class="day day-deep"></rect>
+          <rect class="day day-light"></rect>
+          <rect class="day day-deep"></rect>
+          <rect class="day day-light"></rect>
+          <rect class="day day-deep"></rect>
+          <rect class="day day-light"></rect>
+        </g>
+      </g>
+    </g>
+  </div>
+</div>
+
+<p>平均 Commit 数 / <b><%= avarage_commits_number(@user, @month_id) %></b>日</p>
+<p>新規 Repository 数 / <b><%= avarage_repositories_number(@user, @month_id) %></b>月</p>

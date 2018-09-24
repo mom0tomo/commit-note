@@ -4,7 +4,7 @@
   <nav>
     <ul class="nav masthead-nav">
       <% if logged_in? %>
-        <li><%= link_to 'Mypage', user_path(current_user) %></li>
+        <li><%= link_to 'Mypage', user_months_path(@user) %></li>
         <li><%= link_to 'Logout', logout_path, method: :delete %></li>
       <% else %>
         <li><%= link_to 'Signup', signup_path %></li>

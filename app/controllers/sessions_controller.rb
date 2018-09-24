@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   def new
+    @user = User.new
   end
 
   def create
@@ -7,7 +8,7 @@ class SessionsController < ApplicationController
     password = params[:session][:password]
     if login(uid, password)
       flash[:success] = 'ログインに成功しました。'
-      redirect_to @user
+      redirect_to user_months_path(@user)
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render :new
@@ -23,7 +24,8 @@ class SessionsController < ApplicationController
   private
 
   def login(uid, password)
-    @user = User.find_by(uid: uid)
+    # ToDo　find_or_create_byが必要か確認する
+    @user = User.find_or_create_by(uid: uid)
     if @user.save && @user.authenticate(password)
       session[:user_id] = @user.id
       return true

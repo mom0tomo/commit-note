@@ -1,10 +1,13 @@
-<main class="inner cover">
-  <h1 class="cover-heading">Let's Image The Commit Of GitHub!</h1>
+<h1 class="cover-heading">Let's Image The Commit Of GitHub!</h1>
 
-  <div class="lead">
+<div class="lead">
     <div class="grath-graph">
       <g class="year">
-        <a href="/signup">
+        <% if logged_in? %>
+          <a href="<%= user_months_path(@user) %>">
+        <% else %>
+          <a href="/login">
+        <% end %>
           <g class="month">
             <p class="month-text">Jan</p>
             <g class="week">
@@ -478,7 +481,10 @@
     </div>
   </div>
 
-  <p class="lead start-btn">
-    <%= link_to 'Start', signup_path, class: 'btn btn-lg btn-success' %>
-  </p>
-</main>
+<p class="lead start-btn">
+  <% if logged_in? %>
+    <%= link_to 'Go!', user_months_path(@user), class: 'btn btn-lg btn-success' %>
+  <% else %>
+    <%= link_to 'Start', login_path, class: 'btn btn-lg btn-success' %>
+  <% end %>
+</p>

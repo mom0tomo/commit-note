@@ -1,0 +1,22 @@
+<div class="lead months">
+  <%= render 'months' %>
+
+  <% @months.each do |month| %>
+    <div class="months-commit">
+      <a href="">
+        <p><%= month.name %></p>
+        <g class="month">
+          <g class="week">
+            <rect class="day day-light"></rect>
+            <rect class="day day-deep"></rect>
+            <rect class="day day-light"></rect>
+            <rect class="day day-deep"></rect>
+            <rect class="day day-light"></rect>
+            <rect class="day day-deep"></rect>
+            <rect class="day day-light"></rect>
+          </g>
+        </g>
+      </a>
+    </div>
+  <% end %>
+</div>
