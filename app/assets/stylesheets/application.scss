@@ -1,0 +1,99 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+// color
+$blight: #ebedf0;
+$light: #c6e48b;
+$normal: #7bc96f;
+$dark: #239a3b;
+$deep: #196127;
+
+// common
+a:hover {
+  color: transparent;
+  text-decoration: none;
+}
+
+.btn {
+  border: none;
+  border-radius: 100px;
+  box-shadow: inset 0 0 10px rgba(25, 97, 39, .4)
+}
+
+// navbar
+.navbar-text {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
+.logo {
+  padding-top: 1px;
+  img {
+    width: 45px;
+    height: 28px;
+  }
+}
+
+// main
+.panel-default>.panel-heading {
+  background-color: #fff;
+  box-shadow: inset 0 0 20px rgba(0,0,0,.1);
+}
+
+.start-btn {
+  margin-top: 30px;
+}
+
+.month {
+  display: inline-block;
+  &-text {
+    font-size: 10px;
+    margin-bottom: 5px;
+    color: #000;
+  }
+}
+
+.week {
+  display: inline-block;
+}
+
+.day {
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin-bottom: 3px;
+  &-blight {
+    background-color: $blight;
+  }
+  &-light {
+    background-color: $light;
+  }
+  &-normal {
+    background-color: $normal;
+  }
+  &-dark {
+    background-color: $dark;
+  }
+  &-deep {
+    background-color: $deep;
+  }
+}
+
+// responsive
+@media (min-width: 768px) {
+  .masthead-nav {
+    margin-right: 20px;
+  }
+}
