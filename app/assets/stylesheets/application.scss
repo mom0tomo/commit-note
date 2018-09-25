@@ -20,6 +20,27 @@ $normal: #7bc96f;
 $dark: #239a3b;
 $deep: #196127;
 
+.blight {
+  background-color: $blight;
+}
+
+.light {
+  background-color: $light;
+}
+
+.normal {
+  background-color: $normal;
+}
+
+.dark {
+  background-color: $dark;
+}
+
+.deep {
+  background-color: $deep;
+}
+
+
 // common
 a:hover {
   color: transparent;
