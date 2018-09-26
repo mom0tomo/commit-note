@@ -132,6 +132,16 @@ a:hover {
 .back-button {
   margin-top: 100px;
 }
+.month-row {
+  display: flex;
+  flex-direction: initial;
+  justify-content: center;
+  align-items: center;
+}
+.day-row {
+  margin-left: 3px;
+}
+
 
 // responsive
 @media (min-width: 768px) {

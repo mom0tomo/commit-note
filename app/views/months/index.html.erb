@@ -3,18 +3,22 @@
 
   <% @months.each do |month| %>
     <div class="months-commit">
-      <a href="">
-        <p><%= month.name %></p>
-        <g class="month">
-          <g class="week">
-            <rect class="day day-light"></rect>
-            <rect class="day day-deep"></rect>
-            <rect class="day day-light"></rect>
-            <rect class="day day-deep"></rect>
-            <rect class="day day-light"></rect>
-            <rect class="day day-deep"></rect>
-            <rect class="day day-light"></rect>
-          </g>
+      <p class="month-text"><%= month.name %></p>
+      <a href="<%= user_month_path(@user, month)  %>">
+        <g class="month month-row">
+          <% @commits.each do |commit| %>
+            <% if commit.number == 0 %>
+              <rect class="day day-row day-blight"></rect>
+            <% elsif commit.number == 1 || commit.number == 2 %>
+              <rect class="day day-row day-light"></rect>
+            <% elsif commit.number >= 3 && commit.number < 7 %>
+              <rect class="day day-row day-normal"></rect>
+            <% elsif commit.number >= 8 && commit.number < 12 %>
+              <rect class="day day-row day-dark"></rect>
+            <% elsif commit.number >= 13 %>
+              <rect class="day day-row day-deep"></rect>
+            <% end %>
+          <% end %>
         </g>
       </a>
     </div>

@@ -4,16 +4,20 @@
 <div class="lead">
   <div class="grath-graph">
     <g class="year">
-      <g class="month">
-        <g class="week">
-          <rect class="day day-light"></rect>
-          <rect class="day day-deep"></rect>
-          <rect class="day day-light"></rect>
-          <rect class="day day-deep"></rect>
-          <rect class="day day-light"></rect>
-          <rect class="day day-deep"></rect>
-          <rect class="day day-light"></rect>
-        </g>
+      <g class="month months-commit month-row">
+        <% @commits.each do |commit| %>
+          <% if commit.number == 0 %>
+            <rect class="day day-row day-blight"></rect>
+          <% elsif commit.number == 1 || commit.number == 2 %>
+            <rect class="day day-row day-light"></rect>
+          <% elsif commit.number >= 3 && commit.number < 7 %>
+            <rect class="day day-row day-normal"></rect>
+          <% elsif commit.number >= 8 && commit.number < 12 %>
+            <rect class="day day-row day-dark"></rect>
+          <% elsif commit.number >= 13 %>
+            <rect class="day day-row day-deep"></rect>
+          <% end %>
+        <% end %>
       </g>
     </g>
   </div>
