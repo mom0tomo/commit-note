@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
   resources :users, only: [:new, :create] do
     resources :months, only: [:index, :show]
+    resources :commits, only: [:new, :create]
   end
 
   get 'login', to: 'sessions#new'

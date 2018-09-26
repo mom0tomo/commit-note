@@ -1,7 +1,19 @@
 module MonthsHelper
   def avarage_commits_number(user, month_id)
-    commits = user.commits.find_by(month_id: month_id)
-    commits.nil? ? 0 : commits.number
+    commits = user.commits.where(month_id: month_id)
+    num = 0
+
+    commits.each do |commit|
+       num += commit.number
+    end
+
+    if commits.nil?
+      num = 0
+    end
+
+    # FIXME: 閏月など全く考慮していない
+    days = 30
+    num / days
   end
 
   def avarage_repositories_number(user, month_id)
