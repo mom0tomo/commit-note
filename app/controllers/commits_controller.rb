@@ -1,5 +1,4 @@
 class CommitsController < ApplicationController
-  require 'octokit'
   require 'open-uri'
 
   def new
@@ -11,7 +10,7 @@ class CommitsController < ApplicationController
     @user = User.find(params[:user_id])
     @month = Month.find(1)
 
-    delete
+    delete_data
     feed = fetch_feed
     create_data!(feed)
 
@@ -28,10 +27,10 @@ class CommitsController < ApplicationController
   private
 
   def fetch_feed
-    client = Octokit::Client.new access_token: ''
-    user = client.user
+    user = User.find(params[:user_id])
+    uid = user.uid
 
-    url = 'https://github.com/' + user.login
+    url = 'https://github.com/' + uid
     doc = Nokogiri::HTML open url
 
     commits = []
@@ -75,11 +74,7 @@ class CommitsController < ApplicationController
     end
   end
 
-  def delete
-    # FIXME: 当日より前のデータを削除する
-    # Commit.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
-
-    # データを全て削除
-    Commit.all.destroy_all
+  def delete_data
+    Commit.where(user_id: @user.id).delete_all unless nil?
   end
 end
