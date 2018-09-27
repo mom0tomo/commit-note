@@ -129,14 +129,20 @@ a:hover {
 .months-commit {
   display: inline-block;
 }
+
 .back-button {
   margin-top: 100px;
 }
+
 .month-row {
   display: flex;
   flex-direction: initial;
   align-items: center;
+  &-top {
+    justify-content: center;
+  }
 }
+
 .day-row {
   margin-left: 3px;
 }
