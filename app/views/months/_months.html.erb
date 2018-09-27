@@ -1,11 +1,11 @@
 <p>ID: <%= @user.uid %></p>
 <p><%= @month_id %>月</p>
 
-<div class="lead">
+<div class="lead months-commit">
   <div class="grath-graph">
     <g class="year">
       <g class="month months-commit month-row">
-        <% @commits.each do |commit| %>
+        <% @this_month_commits.each do |commit| %>
           <% if commit.number == 0 %>
             <rect class="day day-row day-blight"></rect>
           <% elsif commit.number == 1 || commit.number == 2 %>

@@ -2,17 +2,17 @@ class MonthsController < ApplicationController
   before_action :require_user_logged_in, only: [:index, :show]
 
   def index
-    @user = User.find(params[:user_id])
+    @user = current_user
     @months = Month.all
     @month_id = Time.current.month
-    @commits =  Commit.where(month_id: @month_id)
+    @this_month_commits =  Commit.where(user_id: @user.id, month_id: @month_id)
   end
 
   def show
-    @user = User.find(params[:user_id])
+    @user = current_user
     @months = Month.all
     @month = Month.find(params[:id])
     @month_id = @month.id
-    @commits =  Commit.where(month_id: @month_id)
+    @this_month_commits =  Commit.where(user_id: @user.id, month_id: @month_id)
   end
 end
