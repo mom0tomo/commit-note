@@ -6,9 +6,10 @@ class SessionsController < ApplicationController
   def create
     uid = params[:session][:uid]
     password = params[:session][:password]
+
     if login(uid, password)
       flash[:success] = 'ログインに成功しました。'
-      redirect_to user_months_path(@user)
+      redirect_to user_create_commit_path(@user)
     else
       flash.now[:danger] = 'ログインに失敗しました。'
       render :new

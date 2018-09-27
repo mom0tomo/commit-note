@@ -1,10 +1,6 @@
 class CommitsController < ApplicationController
   require 'open-uri'
 
-  def new
-    @user = User.find(params[:user_id])
-  end
-
   def create
     todays_commits = Commit.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
     @user = User.find(params[:user_id])

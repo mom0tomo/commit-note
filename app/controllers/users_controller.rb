@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to new_user_commit_url(@user)
+      redirect_to user_months_path(@user)
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new

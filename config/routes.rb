@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   post 'signup', to: 'users#create'
   resources :users, only: [:new, :create] do
     resources :months, only: [:index, :show]
+
+    get 'create', to: 'commits#create', as: :create_commit
     resources :commits, only: [:new, :create]
   end
 
