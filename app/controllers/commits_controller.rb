@@ -71,6 +71,7 @@ class CommitsController < ApplicationController
   end
 
   def delete_data
+    @user = current_user
     Commit.where(user_id: @user.id).delete_all unless nil?
   end
 end

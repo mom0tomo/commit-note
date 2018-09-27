@@ -20,4 +20,8 @@ module MonthsHelper
     repositories = user.repositories.find_by(month_id: month_id)
     repositories.nil? ? 0 : repositories.number
   end
+
+  def monthly_commits(user_id, month_id)
+    Commit.where(user_id: user_id, month_id: month_id)
+  end
 end

@@ -1,12 +1,13 @@
 <div class="lead months">
   <%= render 'months' %>
 
-  <% @months.each do |month| %>
-    <div class="months-commit">
+  <div class="months-commit">
+    <% @months.each do |month| %>
       <p class="month-text"><%= month.name %></p>
       <a href="<%= user_month_path(@user, month)  %>">
-        <g class="month month-row">
-          <% @commits.each do |commit| %>
+        <g class="month month-row month-text">
+          <% commits = monthly_commits(@user.id, month.id) %>
+          <% commits.each do |commit| %>
             <% if commit.number == 0 %>
               <rect class="day day-row day-blight"></rect>
             <% elsif commit.number == 1 || commit.number == 2 %>
@@ -21,6 +22,6 @@
           <% end %>
         </g>
       </a>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
