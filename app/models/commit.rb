@@ -4,4 +4,6 @@ class Commit < ApplicationRecord
 
   validates :user_id, presence: true
   validates :month_id, presence: true
+  validates :year, presence: true
+  validates :day, presence: true
 end

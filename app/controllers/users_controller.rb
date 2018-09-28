@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.latest_sign_in_at  = Time.zone.now
 
     if @user.save
       flash[:success] = 'ユーザを登録しました。'

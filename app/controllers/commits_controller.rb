@@ -2,21 +2,26 @@ class CommitsController < ApplicationController
   require 'open-uri'
 
   def create
-    todays_commits = Commit.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
     @user = User.find(params[:user_id])
-    @month = Month.find(1)
 
-    delete_data
-    feed = fetch_feed
-    create_data!(feed)
-
-
-    unless todays_commits.nil?
-      flash[:success] = 'commitのデータインポート終了'
+    if Time.zone.now.beginning_of_day <= current_user.latest_sign_in_at && current_user.latest_sign_in_at <= Time.zone.now.end_of_day
+      # 2度目以降のログインならそのままリダイレクトする
       redirect_to user_months_path(@user)
     else
-      flash[:success] = 'commitのデータインポートに失敗しました。'
-      render :new
+      # 今日最初のログインだったらスクレイピングとインポートを実行する
+      todays_commits = Commit.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
+
+      delete_data
+      feed = fetch_feed
+      create_data!(feed)
+
+      unless todays_commits.nil?
+        flash[:success] = 'commitのデータインポート終了'
+        redirect_to user_months_path(@user)
+      else
+        flash[:success] = 'commitのデータインポートに失敗しました。'
+        render :new
+      end
     end
   end
 
@@ -58,7 +63,6 @@ class CommitsController < ApplicationController
       end
     end
 
-    # results = [{:year=>"2017", month_id: "9",  :day=>"21", :commit=>1}, {:year=>"2018", month_id: "10", :day=>"11"}]
     results.each do |result|
       Commit.create!(
           number: result[:commit],
