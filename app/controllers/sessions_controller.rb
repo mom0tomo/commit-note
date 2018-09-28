@@ -27,6 +27,8 @@ class SessionsController < ApplicationController
   def login(uid, password)
     # ToDo　find_or_create_byが必要か確認する
     @user = User.find_or_create_by(uid: uid)
+    @user.latest_sign_in_at  = Time.zone.now
+
     if @user.save && @user.authenticate(password)
       session[:user_id] = @user.id
       return true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_26_043444) do
+ActiveRecord::Schema.define(version: 2018_09_28_021351) do
 
   create_table "commits", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "number"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 2018_09_26_043444) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.timestamp "latest_sign_in_at"
   end
 
   add_foreign_key "commits", "months"
