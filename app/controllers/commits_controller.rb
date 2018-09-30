@@ -4,10 +4,10 @@ class CommitsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
 
-    if Time.zone.now.beginning_of_day <= current_user.latest_sign_in_at && current_user.latest_sign_in_at <= Time.zone.now.end_of_day
-      # 2度目以降のログインならそのままリダイレクトする
-      redirect_to user_months_path(@user)
-    else
+    # if Time.zone.now.beginning_of_day <= current_user.latest_sign_in_at && current_user.latest_sign_in_at <= Time.zone.now.end_of_day
+    #   # 2度目以降のログインならそのままリダイレクトする
+    #   redirect_to user_months_path(@user)
+    # else
       # 今日最初のログインだったらスクレイピングとインポートを実行する
       todays_commits = Commit.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day)
 
@@ -22,7 +22,7 @@ class CommitsController < ApplicationController
         flash[:success] = 'commitのデータインポートに失敗しました。'
         render :new
       end
-    end
+    # end
   end
 
   private
